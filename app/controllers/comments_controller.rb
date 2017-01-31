@@ -1,9 +1,10 @@
 class CommentsController < ApplicationController
   def create
     @device = Device.find(params[:device_id])
-    @location = @device.location
     @comment = @device.comments.create(comment_params)
-    redirect_to location_path(@location)
+    
+    redirect_to device_path(@device)
+      
   end
 
   def destroy

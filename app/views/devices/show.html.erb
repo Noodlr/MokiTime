@@ -1,17 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="mokitime.css">
         
-        <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-        <!-- jQuery library -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-
-        <!-- Latest compiled JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body>
         <% @comment = @device.comments.order("created_at").last %>
@@ -23,7 +13,7 @@
                 </ul>
                 <p class="navbar-text navbar-right">MokiTime</p>
             </div>
-            <div class="jumbotron resolved">
+            <div class="jumbotron">
                 <h1><%= @device.name %></%></h1>
             </div>
             <div class="row">
