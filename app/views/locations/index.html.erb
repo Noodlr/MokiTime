@@ -1,0 +1,20 @@
+<h2>Locations</h2>
+
+<%= link_to 'New location', new_location_path %>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Company</th>
+    <th colspan="2"></th>
+  </tr>
+ 
+  <% @locations.each do |location| %>
+    <tr>
+      <td><%= location.name %></td>
+      <td><%= location.company.name %></td>
+      <td><%= link_to 'Show', location_path(location) %></td>
+      <td><%= link_to 'Edit', edit_location_path(location) %></td>
+    </tr>
+  <% end %>
+</table>

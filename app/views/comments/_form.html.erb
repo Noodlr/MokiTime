@@ -1,0 +1,15 @@
+<%= form_for([@device, @device.comments.build]) do |f| %>
+  <form>
+        <div class="form-group">
+            <label for="comment">Comment:</label>
+            <%= f.text_area :body, :class => 'form-control' %>
+        </div>
+        <div class="form-group">
+            <label for="status">Status:</label>
+            <%= collection_select( :comment, :status_id, Status.all, :id, :name, {}, { :multiple => false} ) %>
+            <label for="name">Name:</label>
+            <%= collection_select( :comment, :user_id, User.all, :id, :name, {}, { :multiple => false } ) %>
+        </div>
+      <%= f.submit 'Save', :class => 'btn btn-default btn-xs'%>
+    </form>
+<% end %>

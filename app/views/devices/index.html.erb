@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="mokitime.css">
+        
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script>
+            $(document).ready(function(){
+                
+                $(".btn-add-comment").click(function(){
+                    $(this).siblings(".comment-form").slideToggle();
+                });
+                
+                $("#btn-show-offline").click(function(){
+                    $(".device").each(function(){
+                        var device_status = $(this).find(".status");
+                        
+                        if (device_status.text() == "Poor Wifi" | device_status.text() == "Tech Going On Site") {
+                            $(this).hide();
+                        }
+                    });
+                });
+                
+                $("#btn-show-all").click(function(){
+                   $(".device").each(function(){
+                        $(this).show();
+                   });
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div id="information">
+                        <h4>AWireless Wifi Settings</h4>
+                        <table>
+                            <tr>
+                                <td>SSID:</td>
+                                <td>AWireless-Internal</td>
+                            </tr>
+                            <tr>
+                                <td>Security:</td>
+                                <td>WPA2-PSK</td>
+                            </tr>
+                            <tr>
+                                <td>Password:</td>
+                                <td>#$ERdfcv</td>
+                            </tr>
+                        </table>
+                        </hr>
+                        <h4>Support Team Google Credentials</h4>
+                        <table>
+                            <tr>
+                                <td>Username:</td>
+                                <td>iqsupport@gmail.com</td>
+                            </tr>
+                            <tr>
+                                <td>Password:</td>
+                                <td>blahblah</td>
+                            </tr>
+                        </table>
+                            
+                    </div>
+                </div>
+                <div class="col-sm-8">
+                    <h2>Device List</h2>
+                    <div id="device-header">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-primary" id="btn-show-offline">Offline Devices</button>
+                            <button type="button" class="btn btn-primary" id="btn-show-all">All Devices</button>
+                        </div>
+                        <button type="button" class="btn btn-primary">Add Device</button>
+                    </div>
+                    <div id="device-list">
+                        <%= render @devices %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+

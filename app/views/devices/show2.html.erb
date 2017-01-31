@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="mokitime.css">
+        
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <div class="container">
+            <div class="navbar navbar-inverse">
+                <ul class="nav navbar-nav">
+                    <li><a href="#">Back</a></li>
+                </ul>
+                <p class="navbar-text navbar-right">MokiTime</p>
+            </div>
+            <div class="jumbotron resolved">
+                <h1><%= @device.name %></h1>
+            </div>
+            <div class="row text-center">
+                <div class="col-sm-4">
+                    <table>
+                        <tr>
+                            <th>Status:</th>
+                            <td><div class="status resolved"></div></td>
+                        </tr>
+                        <tr>
+                            <th>Last Updated:</th>
+                            <td></td>
+                        </tr>
+                    </table>
+                    
+                </div>
+                <div class="col-sm-4">
+                    <table>
+                        <tr>
+                            <th>Address:</th>
+                            <td><%= @device.location.address %></td>
+                        </tr>
+                        <tr>
+                            <th>City:</th>
+                            <td><%= @device.location.city %></td>
+                            <th>State:</th>
+                            <td><%= @device.location.state %></td>
+                        </tr>
+                        <tr>
+                            <th>Zip Code:</th>
+                            <td><%= @device.location.zip %></td>
+                        </tr>
+                        <tr>
+                            <th>Phone Number:</th>
+                            <td><%= @device.location.phone %></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-sm-4">
+                    <table>
+                        <tr>
+                            <th>Company:</th>
+                            <td><%= @device.location.company.name %></td>
+                        </tr>
+                        <tr>
+                            <th>Application:</th>
+                            <td><%= @device.software.name %></td>
+                        </tr>
+                    </table>
+
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-4">
+                </div>
+                <div class="col-sm-8">
+                    <h4>Comments</h4>
+                    <div id="new-comment">
+                        <%= render 'comments/form' %>
+                    </div>
+                    <div id="comment-list">
+                        <%= render @device.comments %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+

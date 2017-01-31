@@ -1,0 +1,17 @@
+<%= form_for([@location, @location.devices.build]) do |f| %>
+  <p>
+    <%= f.label :name %> <br>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :device_ID %> <br>
+    <%= f.text_field :d_id %>
+  </p>
+  <p>
+    <%= f.label :software %> <br>
+    <%= collection_select( :device, :software_id, Software.all, :id, :name, {}, { :multiple => false } ) %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

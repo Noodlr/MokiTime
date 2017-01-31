@@ -1,0 +1,11 @@
+<div class="comment <%= status_class(comment.status) %>">
+    <strong>Comment:</strong>
+    <p class="right"><strong>Date: </strong><%= comment.created_at %></p>
+    <p class="comment-text"><%= comment.body %></p>
+    <div class="left">
+        <p><strong>Status:</strong><%= comment.status.name %></p>
+    </div>
+    <div class="right">
+        <p><strong>Commenter: </strong><%= comment.user.name %></p>
+    </div>
+</div>
