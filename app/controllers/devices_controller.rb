@@ -1,6 +1,6 @@
 class DevicesController < ApplicationController
   def index
-    @devices = Device.all
+    @devices = Device.paginate(page:params[:page])
   end
 
   def show
