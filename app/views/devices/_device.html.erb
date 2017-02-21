@@ -1,46 +1,19 @@
 <% @comment = device.comments.order("created_at").last %>
 <% if device.comments.count > 0 %>
-    <div class="device <%= status_class(@comment.status) %>">
+    <%= link_to device_path(device) do %>
+        <tr class="clickable-row" data-href="devices/<%= device.id %>">
+            <td><%= device.name %></td>
+            <td><span class="status <%= status_class(@comment.status) %>"><%= @comment.status.name %></span></td>
+            <td><%= device.location.company.name %></td>
+            <td><%= @comment.created_at %></td>
+        </tr>
+    <% end %>
 <% else %>
-    <div class="device <%= status_class(@comment.status) %>">
+    <tr class="clickable-row" data-href="devices/<%= device.id %>">
+        <td><%= device.name %></td>
+        <td><span class="status resolved">Online</span></td>
+        <td><%= device.location.company.name %></td>
+        <td></td>
+    </tr>
 <% end %>
 
-<%= link_to device_path(device) do %>
-    <div class="info">
-        <div class="left">
-            <h2><%= device.name %></h2>
-            <p><strong>Status: </strong><%= @comment.status.name %></p>
-        </div>
-        <div class="right">
-            <p><strong>Company: </strong><%= device.location.company.name %></p>
-            <p><strong>Last Updated: </strong><%= @comment.created_at %></p>
-            <p><strong>Phone Number:</strong><%= device.location.phone %></p>
-        </div>
-    </div>
-<% end %>
-<div class="collapse comment-form">
-    <form>
-        <div class="form-group">
-            <label for="comment">Comment:</label>
-            <textarea class="form-control" rows="2" id="comment"></textarea>
-        </div>
-        <div class="form-group">
-            <label for="status">Status:</label>
-            <select id="status">
-                <option value="1">Resolved</option>
-                <option value="2">Reps Unavailable to Troubleshoot</option>
-                <option value="3">Offline</option>
-                <option value="4">Poor Wifi</option>
-                <option value="5">Tech Going On-Site</option>
-            </select>
-            <label for="name">Name:</label>
-            <input type="text">
-        </div>
-        <button type="button" class="btn btn-default btn-xs">Save</button>
-    </form>
-</div>
-<a data-toggle="collapse" class="btn-add-comment clear">
-    <div class="text-center">
-        <span class="glyphicon glyphicon-menu-down"></span>Add Comment
-    </div>
-</a>

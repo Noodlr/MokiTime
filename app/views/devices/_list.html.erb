@@ -1,0 +1,32 @@
+<div id="filterrific_results">
+  <div>
+    <%= page_entries_info devices %>
+  </div>
+  <table class="table-striped table-hover">
+    <tr>
+      <th>Name</th>
+      <th>Status</th>
+      <th>Company</th>
+      <th>Last Updated</th>
+    </tr>
+    <% devices.each do |device| %>
+      <% @comment = device.comments.order("created_at").last %>
+      <% if device.comments.count > 0 %>
+        <tr>
+            <td><%= link_to(device.name, device_path(device)) %></td>
+            <td><span class="status <%= status_class(@comment.status) %>"><%= @comment.status.name %></span></td>
+            <td><%= device.location.company.name %></td>
+            <td><%= @comment.created_at %></td>
+        </tr>
+      <% else %>
+        <tr>
+            <td><%= link_to(device.name, device_path(device)) %></td>
+            <td><span class="status resolved">Online</span></td>
+            <td><%= device.location.company.name %></td>
+            <td></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </table>
+</div>
+<%= will_paginate devices %>

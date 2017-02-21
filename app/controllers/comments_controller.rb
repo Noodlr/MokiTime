@@ -1,10 +1,12 @@
 class CommentsController < ApplicationController
   def create
     @device = Device.find(params[:device_id])
+    @status = Status.find(comment_params[:status_id])
     @comment = @device.comments.create(comment_params)
     
+    @device.update_attributes(:needs_to_be_contacted => @status.needs_to_be_contacted)
+    
     redirect_to device_path(@device)
-      
   end
 
   def destroy

@@ -1,6 +1,17 @@
 class DevicesController < ApplicationController
+  
   def index
-    @devices = Device.all
+    @filterrific = initialize_filterrific(
+      Device,
+      params[:filterrific],
+    ) or return
+  
+    @devices = @filterrific.find.page(params[:page])
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def show
