@@ -1,20 +1,35 @@
-<h2>Locations</h2>
+<!DOCTYPE html>
+<html>
+    <head>
 
-<%= link_to 'New location', new_location_path %>
-
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Company</th>
-    <th colspan="2"></th>
-  </tr>
- 
-  <% @locations.each do |location| %>
-    <tr>
-      <td><%= location.name %></td>
-      <td><%= location.company.name %></td>
-      <td><%= link_to 'Show', location_path(location) %></td>
-      <td><%= link_to 'Edit', edit_location_path(location) %></td>
-    </tr>
-  <% end %>
-</table>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="navbar navbar-inverse">
+                    <p class="navbar-text">MokiTime</p>
+                    <ul class="nav navbar-nav">
+                        <li><%= link_to("New Location", new_location_path) %></li>
+                    </ul>
+                </div>
+                <h2>Locations</h2>
+                
+                <table class="table-striped">
+                  <tr>
+                    <th>Name</th>
+                    <th>Company</th>
+                    <th colspan="1"></th>
+                  </tr>
+                 
+                  <% @locations.each do |location| %>
+                    <tr>
+                      <td><%= link_to(location.name, location_path(location)) %></td>
+                      <td><%= location.company.name %></td>
+                      <td><%= link_to 'Edit', edit_location_path(location) %></td>
+                    </tr>
+                  <% end %>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

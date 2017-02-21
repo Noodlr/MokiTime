@@ -1,49 +1,83 @@
-  <p>
-    <strong>Name:<strong>
-    <%= @location.name %>
-  </p>
-  <p>
-    <strong>Address:<strong>
-    <%= @location.address %>
-  </p>
-  <p>
-    <strong>City:<strong>
-    <%= @location.city %>
-  </p>
-  <p>
-    <strong>Phone Number:<strong>
-    <%= @location.phone %>
-  </p>
-  <p>
-    <strong>State:<strong>
-    <%= @location.state %>
-  </p>
-  <p>
-    <strong>Zip Code:<strong>
-    <%= @location.zip %>
-  </p>
+ <!DOCTYPE html>
+<html>
+    <head>
 
-  <h4>Devices</h4>
-  <table>
-  <tr>
-    <th>Name</th>
-    <th>Software</th>
-    <th>Status</th>
-    <th colspan="3"></th>
-  </tr>
- 
-  <% @location.devices.each do |device| %>
-    <tr>
-      <td><%= device.name %></td>
-      <td><%= device.software.name %></td>
-      <td>Unknown</td>
-      <td><%= link_to 'Show', device_path(device) %></td>
-      <td><%= link_to 'Edit', edit_device_path(device) %></td>
-      <td><%= link_to 'Destroy', device_path(device),
-              method: :delete,
-              data: { confirm: 'Are you sure?' } %></td>
-    </tr>
-  <% end %>
-  </table>
-  <h4>Add a Device</h4>
-  <%= render 'devices/form' %>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="navbar navbar-inverse">
+                    <p class="navbar-text">MokiTime</p>
+                    <ul class="nav navbar-nav">
+                        <li><%= link_to("Location List", locations_path) %></li>
+                    </ul>
+                </div>
+                <div class="col-sm-4">
+                  <p>
+                    <strong>Name:<strong>
+                    <%= @location.name %>
+                  </p>
+                  <p>
+                    <strong>Address:<strong>
+                    <%= @location.address %>
+                  </p>
+                  <p>
+                    <strong>City:<strong>
+                    <%= @location.city %>
+                  </p>
+                  <p>
+                    <strong>Phone Number:<strong>
+                    <%= @location.phone %>
+                  </p>
+                  <p>
+                    <strong>State:<strong>
+                    <%= @location.state %>
+                  </p>
+                  <p>
+                    <strong>Zip Code:<strong>
+                    <%= @location.zip %>
+                  </p>
+                </div>
+                
+                <div class="col-sm-8">
+                  <h4>Devices</h4>
+                  <table class="table-striped">
+                    <tr>
+                      <th>Name</th>
+                      <th>Status</th>
+                      <th>Last Updated</th>
+                      <th colspan="2"></th>
+                    </tr>
+                    <% @location.devices.each do |device| %>
+                      <% @comment = device.comments.order("created_at").last %>
+                      <% if device.comments.count > 0 %>
+                        <tr>
+                            <td><%= link_to(device.name, device_path(device)) %></td>
+                            <td><div class="status <%= status_class(@comment.status) %>"><%= @comment.status.name %></div></td>
+                            <td><%= @comment.created_at %></td>
+                            <td><%= link_to 'Edit', edit_device_path(device) %></td>
+                            <td><%= link_to 'Destroy', device_path(device),
+                                    method: :delete,
+                                    data: { confirm: 'Are you sure?' } %></td>
+                        </tr>
+                      <% else %>
+                        <tr>
+                            <td><%= link_to(device.name, device_path(device)) %></td>
+                            <td><div class="status resolved">Online</div></td>
+                            <td></td>
+                            <td><%= link_to 'Edit', edit_device_path(device) %></td>
+                            <td><%= link_to 'Destroy', device_path(device),
+                                    method: :delete,
+                                    data: { confirm: 'Are you sure?' } %></td>
+                        </tr>
+                      <% end %>
+                    <% end %>
+                  </table>
+                
+                  <h4>Add a Device</h4>
+                  <%= render 'devices/form' %>
+                </div>
+           </div>
+        </div>
+    </body>
+</html>

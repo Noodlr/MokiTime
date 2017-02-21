@@ -4,8 +4,14 @@
 
     </head>
     <body>
-        <div class="container text-center">
+        <div class="container">
             <div class="row">
+                <div class="navbar navbar-inverse">
+                    <p class="navbar-text">MokiTime</p>
+                    <ul class="nav navbar-nav">
+                        <li><%= link_to("Add New Device", new_location_path) %></li>
+                    </ul>
+                </div>
                 <div class="col-sm-4">
                     <div id="information">
                         <h4>AWireless Wifi Settings</h4>
@@ -39,21 +45,18 @@
                     </div>
                 </div>
                 <div class="col-sm-8">
-                    <%= form_for_filterrific @filterrific do |f| %>
-                        <div>
-                          Search
-                          <%= f.text_field( :search_query, class: 'filterrific-periodically-observed') %>
-                        </div>
-                        <div>
-                          Devices Needing to be Contacted
-                          <%= f.check_box( :with_comments, class: 'filterrific-periodically-observed') %>
-                        </div>
-                        <div>
-                        <%= link_to('Reset filters', reset_filterrific_url) %>
-                      </div>
-                      <%= render_filterrific_spinner %>
-                    <% end %>
                     <h2>Device List</h2>
+                        
+                        <%= form_for_filterrific @filterrific do |f| %>
+                            <div class="form-group">
+                              <label for="search_query">Search</label>
+                              <%= f.text_field( :search_query, class: 'filterrific-periodically-observed') %>
+
+                              <label for="offline">Show Offline Devices</label>
+                              <%= f.check_box( :with_comments, class: 'filterrific-periodically-observed') %>
+                            </div>
+                        <% end %>
+                        
                     <%= render( partial: 'devices/list', locals: {devices: @devices}) %>
                 </div>
             </div>

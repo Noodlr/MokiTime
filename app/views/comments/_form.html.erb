@@ -9,7 +9,7 @@
         <%= collection_select( :comment, :status_id, Status.all, :id, :name, {:include_blank => true, :selected => ''}, { :multiple => false} ) %>
         <label for="name">Name:</label>
         <%= collection_select( :comment, :user_id, User.all, :id, :name, {:include_blank => true, :selected => ''}, { :multiple => false } ) %>
+        <%= f.submit 'Save', :class => 'btn btn-default btn-xs right'%>
     </div>
-    <%= f.submit 'Save', :class => 'btn btn-default btn-xs'%>
   </form>
 <% end %>

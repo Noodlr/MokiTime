@@ -1,8 +1,10 @@
 <div id="filterrific_results">
-  <div>
-    <%= page_entries_info devices %>
+  <div class="well well-sm">
+      <%= render_filterrific_spinner %>
+      <%= page_entries_info devices, model: 'device' %>
+      <%= link_to('Reset filters', reset_filterrific_url, class: 'right') %>
   </div>
-  <table class="table-striped table-hover">
+  <table class="table-striped">
     <tr>
       <th>Name</th>
       <th>Status</th>
@@ -14,14 +16,14 @@
       <% if device.comments.count > 0 %>
         <tr>
             <td><%= link_to(device.name, device_path(device)) %></td>
-            <td><span class="status <%= status_class(@comment.status) %>"><%= @comment.status.name %></span></td>
+            <td><div class="status <%= status_class(@comment.status) %>"><%= @comment.status.name %></div></td>
             <td><%= device.location.company.name %></td>
             <td><%= @comment.created_at %></td>
         </tr>
       <% else %>
         <tr>
             <td><%= link_to(device.name, device_path(device)) %></td>
-            <td><span class="status resolved">Online</span></td>
+            <td><div class="status resolved">Online</div></td>
             <td><%= device.location.company.name %></td>
             <td></td>
         </tr>

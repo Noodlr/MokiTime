@@ -1,5 +1,22 @@
-<h2>New Location</h2>
+<!DOCTYPE html>
+<html>
+    <head>
 
-<%= render 'form' %>
-
-<%= link_to 'Back', locations_path %>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="navbar navbar-inverse">
+                    <p class="navbar-text">MokiTime</p>
+                    <ul class="nav navbar-nav">
+                        <li><%= link_to("Location List", locations_path) %></li>
+                    </ul>
+                </div>
+                <h2>New Location</h2>
+                <div class="col-sm-12">
+                  <%= render 'form' %>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
