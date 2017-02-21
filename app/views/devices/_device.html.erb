@@ -1,19 +1,19 @@
 <% @comment = device.comments.order("created_at").last %>
-    <% if device.comments.count > 0 %>
-        <%= link_to device_path(device) do %>
-            <tr class="clickable-row" data-href="devices/<%= device.id %>">
-                <td><%= device.name %></td>
-                <td><span class="status <%= status_class(@comment.status) %>"><%= @comment.status.name %></span></td>
-                <td><%= device.location.company.name %></td>
-                <td><%= @comment.created_at %></td>
-            </tr>
-        <% end %>
-    <% else %>
-        <tr class="clickable-row" data-href="devices/<%= @device.id %>">
+<% if device.comments.count > 0 %>
+    <%= link_to device_path(device) do %>
+        <tr class="clickable-row" data-href="devices/<%= device.id %>">
             <td><%= device.name %></td>
-            <td><span class="status <%= status_class(@comment.status) %>"><%= Online %></span></td>
+            <td><span class="status <%= status_class(@comment.status) %>"><%= @comment.status.name %></span></td>
             <td><%= device.location.company.name %></td>
-            <td></td>
+            <td><%= @comment.created_at %></td>
         </tr>
     <% end %>
+<% else %>
+    <tr class="clickable-row" data-href="devices/<%= device.id %>">
+        <td><%= device.name %></td>
+        <td><span class="status resolved">Online</span></td>
+        <td><%= device.location.company.name %></td>
+        <td></td>
+    </tr>
+<% end %>
 
